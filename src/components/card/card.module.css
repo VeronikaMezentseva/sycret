@@ -1,0 +1,33 @@
+.card {
+  position: relative;
+  border: 1px solid red;
+  background-color: beige;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.card:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+}
+
+.span {
+  position: absolute;
+  display: block;
+  inset: 0;
+  z-index: 1;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.input:checked + .span {
+  background-color: red;
+}
+
+.label {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}

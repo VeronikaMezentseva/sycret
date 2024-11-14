@@ -8,28 +8,19 @@ import {
 } from '../../slices/sertificates-slice';
 import { Card } from '../../components/card/Card';
 import { useNavigate } from 'react-router-dom';
+import { TSertificate } from '../../utils/types';
 
-export const SertificatesPage: FC = () => {
-  const dispatch = useAppDispatch();
+export const SertificatesPage: FC<{
+  handleSelect: (id: string) => string;
+  sertificates: TSertificate[];
+}> = ({ handleSelect, sertificates }) => {
+  
   const navigate = useNavigate();
-
-  const sertificates = useAppSelector(selectSertificates);
-  const [cardSelected, setCardSelected] = useState<null | string>(null); //здесь храним ID выбранной карты
-
-  const handleSelect = (id: string) => {
-    console.log(id);
-    setCardSelected(id);
-    return cardSelected;
-  };
 
   const handleSubmit = () => {
     console.log('navvv');
-    navigate('/form');
+    navigate('/contacts');
   };
-
-  useEffect(() => {
-    dispatch(getSertificates());
-  }, []);
 
   return (
     <>

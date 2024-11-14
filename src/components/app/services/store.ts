@@ -6,9 +6,11 @@ import {
 } from '@reduxjs/toolkit';
 import { useDispatch as dispatchHook } from 'react-redux';
 import { sertificatesSlice } from '../../../slices/sertificates-slice';
+import { orderSlice } from '../../../slices/order-slice';
 
 export const rootReducer = combineReducers({
-  [sertificatesSlice.name]: sertificatesSlice.reducer
+  [sertificatesSlice.name]: sertificatesSlice.reducer,
+  [orderSlice.name]: orderSlice.reducer
 });
 
 export const store = configureStore({

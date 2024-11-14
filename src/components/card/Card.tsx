@@ -12,11 +12,11 @@ export const Card: FC<{
       type='radio'
       name='sale'
       value={id}
-      id={id}
+      id={`${id}`}
       onChange={() => handleSelect(id)}
     />
     <span className={styles.span} />
-    <label htmlFor={id} id={id} className={styles.label} />
+    <label htmlFor={`${id}`} id={`${id}`} className={styles.label} />
     <div className={styles.wrapper}>
       <p>{name}</p>
       <button>Выбрать</button>

@@ -3,8 +3,8 @@ import { FC } from 'react';
 
 export const InputPhoneNumber: FC<{
   onChange: (evt: React.FormEvent<HTMLInputElement>) => void;
-  onBlur: (evt: React.FormEvent<HTMLInputElement>) => void;
-}> = ({ onChange, onBlur }) => {
+  // onBlur: (evt: React.FormEvent<HTMLInputElement>) => void;
+}> = ({ onChange }) => {
   const inputRef = useMask({
     mask: '+7 (___) ___-__-__',
     replacement: { _: /\d/ }
@@ -25,7 +25,7 @@ export const InputPhoneNumber: FC<{
       ref={inputRef}
       onFocus={(evt) => handleFocus(evt)}
       placeholder='+7 (___) ___-__-__'
-      onBlur={(evt) => onBlur(evt)}
+      onBlur={(evt) => onChange(evt)}
     />
   );
 };

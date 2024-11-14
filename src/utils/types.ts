@@ -16,3 +16,14 @@ export type TSertificate = {
   SUMMA: string;
   TABLENAME: string;
 };
+
+export type TOrderData = {
+  ID: number;
+  TableName: string;
+  PrimaryKey: string;
+  Price: number;
+  Summa: number;
+  ClientName: string;
+  Phone: string;
+  Email: string;
+};

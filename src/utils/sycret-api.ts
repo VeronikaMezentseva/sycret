@@ -1,4 +1,4 @@
-import { TSertificate } from './types';
+import { TOrderData, TSertificate } from './types';
 
 const baseURL = 'https://sycret.ru/service/api/api';
 const apiKey = '&ApiKey=011ba11bdcad4fa396660c2ec447ef14';
@@ -18,6 +18,14 @@ export type TSertificateResponse = {
   resultdescription: string;
 };
 
+export type TOrderResponse = {
+  data: {
+    CERTNUMBER: string;
+  }[];
+  result: number;
+  resultdescription: string;
+};
+
 export const getSertificatesApi = () =>
   fetch(`${baseURL}${getGoodListMethod}${apiKey}`)
     .then((res) => checkResponse<TSertificateResponse>(res))
@@ -29,5 +37,44 @@ export const getSertificatesApi = () =>
       }
     });
 
-// export const postSelectedSertificateApi = () =>
-//     fetch(`${baseURL}${postSelectedSertificateMethod}${apiKey}`)
+export type TOrderStaticData = {
+  ApiKey: '011ba11bdcad4fa396660c2ec447ef14';
+  MethodName: 'OSSale';
+  PaymentTypeId: 2;
+  UseDelivery: 0;
+  DeliveryAddress: '';
+  IsGift: 0;
+  PName: '';
+  PPhone: '';
+  MsgText: '';
+};
+
+const orderStaticData: TOrderStaticData = {
+  ApiKey: '011ba11bdcad4fa396660c2ec447ef14',
+  MethodName: 'OSSale',
+  PaymentTypeId: 2,
+  UseDelivery: 0,
+  DeliveryAddress: '',
+  IsGift: 0,
+  PName: '',
+  PPhone: '',
+  MsgText: ''
+};
+
+export function postSelectedSertificateApi(data: TOrderData) {
+  return fetch(`${baseURL}${postSelectedSertificateMethod}${apiKey}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(Object.assign(data, orderStaticData))
+  })
+    .then((res) => checkResponse<TOrderResponse>(res))
+    .then((data) => {
+      if (data) {
+        return data.data;
+      } else {
+        return Promise.reject(data);
+      }
+    });
+}

@@ -14,11 +14,26 @@ import { SertificatesPage } from '../../pages/sertificates-page/SertificatesPage
 import { FormPage } from '../../pages/form-page/FormPage';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const sertificates = useAppSelector(selectSertificates);
+
+  const [selectedCardId, setSelectedCardId] = useState<string>(''); //здесь храним ID выбранной карты
+
+  useEffect(() => {
+    dispatch(getSertificates());
+  }, []);
+  
+  const handleCardSelect = (id: string) => {
+    setSelectedCardId(id);
+    console.log(selectedCardId);
+    return selectedCardId;
+  };
+
   return (
     <>
       <Routes>
-        <Route path='/вв' element={<SertificatesPage />} />
-        <Route path='/' element={<FormPage />} />
+        <Route path='/' element={<SertificatesPage handleSelect={handleCardSelect} sertificates={sertificates} />} />
+        <Route path='/contacts' element={<FormPage id={selectedCardId} />} />
       </Routes>
     </>
   );

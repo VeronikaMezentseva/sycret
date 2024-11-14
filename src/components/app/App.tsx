@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     dispatch(getSertificates());
   }, []);
-  
+
   const handleCardSelect = (id: string) => {
     setSelectedCardId(id);
     console.log(selectedCardId);
@@ -32,7 +32,15 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<SertificatesPage handleSelect={handleCardSelect} sertificates={sertificates} />} />
+        <Route
+          path='/'
+          element={
+            <SertificatesPage
+              handleSelect={handleCardSelect}
+              sertificates={sertificates}
+            />
+          }
+        />
         <Route path='/contacts' element={<FormPage id={selectedCardId} />} />
       </Routes>
     </>

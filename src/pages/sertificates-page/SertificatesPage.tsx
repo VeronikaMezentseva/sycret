@@ -14,7 +14,6 @@ export const SertificatesPage: FC<{
   handleSelect: (id: string) => string;
   sertificates: TSertificate[];
 }> = ({ handleSelect, sertificates }) => {
-  
   const navigate = useNavigate();
 
   const handleSubmit = () => {

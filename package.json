@@ -5,6 +5,8 @@
   "scripts": {
     "start": "webpack serve --mode=development",
     "test": "jest",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
     "cypress": "./node_modules/.bin/cypress open",
     "lint": "eslint .",
     "fix": "prettier ./src --write"

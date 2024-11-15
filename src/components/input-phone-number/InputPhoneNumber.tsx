@@ -20,7 +20,6 @@ export const InputPhoneNumber: FC<{
     <input
       type='text'
       name='phoneNumber'
-      required
       onChange={(evt) => onChange(evt)}
       ref={inputRef}
       onFocus={(evt) => handleFocus(evt)}

@@ -119,7 +119,6 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
             <input
               type='text'
               name='name'
-              required
               onChange={(evt: React.FormEvent<HTMLInputElement>) =>
                 handleChange(evt)
               }
@@ -139,7 +138,6 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
             <input
               type='email'
               name='email'
-              required
               onChange={(evt: React.FormEvent<HTMLInputElement>) =>
                 handleChange(evt)
               }

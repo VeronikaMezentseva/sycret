@@ -1,12 +1,21 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './form-page.module.css';
 import { InputPhoneNumber } from '../../components/input-phone-number/InputPhoneNumber';
 import { ErrorText } from '../../components/error-text/ErrorText';
-import { useAppDispatch } from '../../utils/hooks';
-import { postOrder } from '../../slices/order-slice';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import {
+  postOrder,
+  selectIsLoading,
+  selectIsSuccess
+} from '../../slices/order-slice';
 import { ReturnButton } from '../../components/return-button/ReturnButton';
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '../../components/loader/Loader';
 
 export const FormPage: FC<{ id: string }> = ({ id }) => {
+  const isPaymentSuccess = useAppSelector(selectIsSuccess);
+  const isLoading = useAppSelector(selectIsLoading);
+
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -14,8 +23,16 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   const [isValidPhomeNumber, setIsValidPhomeNumber] = useState<boolean>();
   const [isValidEmail, setIsValidEmail] = useState<boolean>();
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isPaymentSuccess) {
+      navigate('/payment');
+    }
+  }, [isPaymentSuccess]);
 
   const formValidate = () => {
     if (isValidEmail && isValidName && isValidPhomeNumber) {
@@ -93,47 +110,51 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   return (
     <>
       <h1>Заполните форму</h1>
-      <form className={styles.form}>
-        <label>
-          Enter your name
-          <input
-            type='text'
-            name='name'
-            required
-            onChange={(evt: React.FormEvent<HTMLInputElement>) =>
-              handleChange(evt)
-            }
-            onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
-              handleChange(evt)
-            }
-          />
-          {isValidName === false && <ErrorText text='error name' />}
-        </label>
-        <label>
-          Enter your phone number
-          <InputPhoneNumber onChange={handleChange} />
-        </label>
-        {isValidPhomeNumber === false && <ErrorText text='error number' />}
-        <label>
-          Enter your email
-          <input
-            type='email'
-            name='email'
-            required
-            onChange={(evt: React.FormEvent<HTMLInputElement>) =>
-              handleChange(evt)
-            }
-            onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
-              handleChange(evt)
-            }
-          />
-        </label>
-        {isValidEmail === false && <ErrorText text='error email' />}
-        <ReturnButton />
-        <button type='submit' onClick={handleSubmit} disabled={!isValidForm}>
-          Оформить
-        </button>
-      </form>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <form className={styles.form}>
+          <label>
+            Enter your name
+            <input
+              type='text'
+              name='name'
+              required
+              onChange={(evt: React.FormEvent<HTMLInputElement>) =>
+                handleChange(evt)
+              }
+              onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
+                handleChange(evt)
+              }
+            />
+            {isValidName === false && <ErrorText text='error name' />}
+          </label>
+          <label>
+            Enter your phone number
+            <InputPhoneNumber onChange={handleChange} />
+          </label>
+          {isValidPhomeNumber === false && <ErrorText text='error number' />}
+          <label>
+            Enter your email
+            <input
+              type='email'
+              name='email'
+              required
+              onChange={(evt: React.FormEvent<HTMLInputElement>) =>
+                handleChange(evt)
+              }
+              onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
+                handleChange(evt)
+              }
+            />
+          </label>
+          {isValidEmail === false && <ErrorText text='error email' />}
+          <ReturnButton />
+          <button type='submit' onClick={handleSubmit} disabled={!isValidForm}>
+            Оплатить
+          </button>
+        </form>
+      )}
     </>
   );
 };

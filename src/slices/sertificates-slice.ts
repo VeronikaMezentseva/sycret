@@ -23,7 +23,8 @@ export const sertificatesSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    selectSertificates: (state) => state.data
+    selectSertificates: (state) => state.data,
+    selectIsLoading: (state) => state.isLoading
   },
   extraReducers: (builder) => {
     builder
@@ -41,6 +42,7 @@ export const sertificatesSlice = createSlice({
   }
 });
 
-export const { selectSertificates } = sertificatesSlice.selectors;
+export const { selectSertificates, selectIsLoading } =
+  sertificatesSlice.selectors;
 export const sertificatesReducer = sertificatesSlice.reducer;
 export const sertificates = (state: RootState) => state.sertificates.data;

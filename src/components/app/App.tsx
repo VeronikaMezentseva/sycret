@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { Route, Routes } from 'react-router-dom';
 import { SertificatesPage } from '../../pages/sertificates-page/SertificatesPage';
 import { FormPage } from '../../pages/form-page/FormPage';
+import { PaymentPage } from '../../pages/payment-page/PaymentPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -43,6 +44,7 @@ function App() {
           }
         />
         <Route path='/contacts' element={<FormPage id={selectedCardId} />} />
+        <Route path='/payment' element={<PaymentPage />} />
       </Routes>
     </>
   );

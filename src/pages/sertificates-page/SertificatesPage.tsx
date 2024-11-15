@@ -13,7 +13,8 @@ import { TSertificate } from '../../utils/types';
 export const SertificatesPage: FC<{
   handleSelect: (id: string) => string;
   sertificates: TSertificate[];
-}> = ({ handleSelect, sertificates }) => {
+  selectedCardId: string;
+}> = ({ handleSelect, sertificates, selectedCardId }) => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -27,7 +28,12 @@ export const SertificatesPage: FC<{
       <ul className={styles.list}>
         {sertificates.map((data) => (
           <li key={data.ID}>
-            <Card name={data.NAME} id={data.ID} handleSelect={handleSelect} />
+            <Card
+              name={data.NAME}
+              id={data.ID}
+              handleSelect={handleSelect}
+              selectedCardId={selectedCardId}
+            />
           </li>
         ))}
       </ul>

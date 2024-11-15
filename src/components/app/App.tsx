@@ -38,6 +38,7 @@ function App() {
             <SertificatesPage
               handleSelect={handleCardSelect}
               sertificates={sertificates}
+              selectedCardId={selectedCardId}
             />
           }
         />

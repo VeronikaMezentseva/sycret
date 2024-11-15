@@ -4,6 +4,7 @@ import { InputPhoneNumber } from '../../components/input-phone-number/InputPhone
 import { ErrorText } from '../../components/error-text/ErrorText';
 import { useAppDispatch } from '../../utils/hooks';
 import { postOrder } from '../../slices/order-slice';
+import { ReturnButton } from '../../components/return-button/ReturnButton';
 
 export const FormPage: FC<{ id: string }> = ({ id }) => {
   const [name, setName] = useState('');
@@ -128,6 +129,7 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
           />
         </label>
         {isValidEmail === false && <ErrorText text='error email' />}
+        <ReturnButton />
         <button type='submit' onClick={handleSubmit} disabled={!isValidForm}>
           Оформить
         </button>

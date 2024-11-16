@@ -29,12 +29,6 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isPaymentSuccess) {
-      navigate('/payment');
-    }
-  }, [isPaymentSuccess]);
-
   const formValidate = () => {
     if (isValidEmail && isValidName && isValidPhomeNumber) {
       setIsValidForm(true);
@@ -57,7 +51,9 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
     if (isValidForm) {
-      dispatch(postOrder(prepareOrderData()));
+      dispatch(postOrder(prepareOrderData())).then((data) => {
+        if (data.meta.requestStatus === 'fulfilled') navigate('/payment');
+      });
     }
   };
 

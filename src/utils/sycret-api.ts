@@ -71,8 +71,8 @@ export function postSelectedSertificateApi(data: TOrderData) {
   })
     .then((res) => checkResponse<TOrderResponse>(res))
     .then((data) => {
-      if (data) {
-        return data.data;
+      if (data.result == 0) {
+        return data;
       } else {
         return Promise.reject(data);
       }

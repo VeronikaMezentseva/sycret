@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "fix": "prettier ./src --write",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",

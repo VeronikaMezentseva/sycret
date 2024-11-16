@@ -70,12 +70,12 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
     publicPath: '/'
   },
   devServer: {
-    static: path.join(__dirname, './build'),
+    static: path.join(__dirname, './dist'),
     compress: true,
     port: 4000,
     historyApiFallback: true

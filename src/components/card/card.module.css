@@ -1,29 +1,44 @@
 .card {
   position: relative;
-  border: 1px solid red;
-  background-color: beige;
-  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  border-radius: 10px;
   padding: 20px;
+  box-shadow: 0px 2px 3px rgb(185, 185, 185);
+  background-color: rgb(244, 244, 244);
 }
 
 .card:hover {
-  background-color: rgba(0, 255, 255, 0.1);
+  background-color: rgba(62, 96, 132, 0.3);
+  transition: all 0.3s;
 }
 
 .span {
   position: absolute;
-  display: block;
   inset: 0;
   z-index: 1;
+  display: block;
+  border-radius: 10px;
 }
 
 .wrapper {
   position: relative;
   z-index: 2;
+  font-size: 18px;
+}
+
+.input {
+  display: none;
+}
+
+.input:checked ~ .wrapper {
+  color: rgb(235, 235, 235);
 }
 
 .input:checked + .span {
-  background-color: red;
+  background-color: rgb(62, 96, 132);
+  transition: all 0.3s;
 }
 
 .label {

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './return-button.module.css';
 
 export const ReturnButton: FC = () => {
   const navigate = useNavigate();
@@ -8,7 +9,10 @@ export const ReturnButton: FC = () => {
     navigate(-1);
   };
   return (
-    <button onClick={(evt: React.MouseEvent<HTMLElement>) => navigateBack(evt)}>
+    <button
+      className={styles['return-button']}
+      onClick={(evt: React.MouseEvent<HTMLElement>) => navigateBack(evt)}
+    >
       Назад
     </button>
   );

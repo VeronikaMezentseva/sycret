@@ -11,6 +11,8 @@ import {
 import { ReturnButton } from '../../components/return-button/ReturnButton';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/loader/Loader';
+import { Title } from '../../components/title/Title';
+import { Button } from '../../components/button/Button';
 
 export const FormPage: FC<{ id: string }> = ({ id }) => {
   const isPaymentSuccess = useAppSelector(selectIsSuccess);
@@ -23,7 +25,6 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   const [isValidPhomeNumber, setIsValidPhomeNumber] = useState<boolean>();
   const [isValidEmail, setIsValidEmail] = useState<boolean>();
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
-  // const [isLoading, setIsLoading] = useState<boolean>();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   };
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/;
     if (emailRegex.test(email)) {
       setIsValidEmail(true);
     } else {
@@ -109,14 +110,15 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
   };
   return (
     <>
-      <h1>Заполните форму</h1>
+      <Title text='Заполните форму' />
       {isLoading ? (
         <Loader />
       ) : (
-        <form className={styles.form}>
-          <label>
-            Enter your name
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.label}>
+            <p className={styles.paragraph}>Имя</p>
             <input
+              className={styles.input}
               type='text'
               name='name'
               onChange={(evt: React.FormEvent<HTMLInputElement>) =>
@@ -128,14 +130,15 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
             />
             {isValidName === false && <ErrorText text='error name' />}
           </label>
-          <label>
-            Enter your phone number
+          <label className={styles.label}>
+            <p className={styles.paragraph}>Номер телефона</p>
             <InputPhoneNumber onChange={handleChange} />
+            {isValidPhomeNumber === false && <ErrorText text='error number' />}
           </label>
-          {isValidPhomeNumber === false && <ErrorText text='error number' />}
-          <label>
-            Enter your email
+          <label className={styles.label}>
+            <p className={styles.paragraph}>Почта</p>
             <input
+              className={styles.input}
               type='email'
               name='email'
               onChange={(evt: React.FormEvent<HTMLInputElement>) =>
@@ -145,12 +148,16 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
                 handleChange(evt)
               }
             />
+            {isValidEmail === false && <ErrorText text='error email' />}
           </label>
-          {isValidEmail === false && <ErrorText text='error email' />}
-          <ReturnButton />
-          <button type='submit' onClick={handleSubmit} disabled={!isValidForm}>
-            Оплатить
-          </button>
+          <div className={styles['buttons-container']}>
+            <ReturnButton />
+            <Button
+              type='submit'
+              text='Оплатить'
+              isDisabled={isValidForm === false}
+            />
+          </div>
         </form>
       )}
     </>

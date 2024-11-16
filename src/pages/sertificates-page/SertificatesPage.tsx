@@ -1,16 +1,13 @@
 import { FC } from 'react';
-import { useEffect, useState } from 'react';
 import styles from './sertificates-page.module.css';
-import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import {
-  getSertificates,
-  selectIsLoading,
-  selectSertificates
-} from '../../slices/sertificates-slice';
+import { useAppSelector } from '../../utils/hooks';
+import { selectIsLoading } from '../../slices/sertificates-slice';
 import { Card } from '../../components/card/Card';
 import { useNavigate } from 'react-router-dom';
 import { TSertificate } from '../../utils/types';
 import { Loader } from '../../components/loader/Loader';
+import { Title } from '../../components/title/Title';
+import { Button } from '../../components/button/Button';
 
 export const SertificatesPage: FC<{
   handleSelect: (id: string) => string;
@@ -28,11 +25,11 @@ export const SertificatesPage: FC<{
 
   return (
     <>
-      <h1 className={styles.text}>Выберите сертификат</h1>
+      <Title text='Выберите сертификат' />
       {isLoading ? (
         <Loader />
       ) : (
-        <div>
+        <div className={styles.container}>
           <ul className={styles.list}>
             {sertificates.map((data) => (
               <li key={data.ID}>
@@ -45,7 +42,7 @@ export const SertificatesPage: FC<{
               </li>
             ))}
           </ul>
-          <button onClick={() => handleSubmit()}>Оформить</button>
+          <Button text={'Оформить'} isDisabled={false} onClick={handleSubmit} />
         </div>
       )}
     </>

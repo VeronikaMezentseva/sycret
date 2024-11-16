@@ -1,9 +1,9 @@
 import useMask from '@react-input/mask/useMask';
 import { FC } from 'react';
+import styles from './input-phone-number.module.css';
 
 export const InputPhoneNumber: FC<{
   onChange: (evt: React.FormEvent<HTMLInputElement>) => void;
-  // onBlur: (evt: React.FormEvent<HTMLInputElement>) => void;
 }> = ({ onChange }) => {
   const inputRef = useMask({
     mask: '+7 (___) ___-__-__',
@@ -18,6 +18,7 @@ export const InputPhoneNumber: FC<{
 
   return (
     <input
+      className={styles.input}
       type='text'
       name='phoneNumber'
       onChange={(evt) => onChange(evt)}

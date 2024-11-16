@@ -1,7 +1,8 @@
 import { FC } from 'react';
+import { Title } from '../../components/title/Title';
 
 export const PaymentPage: FC = () => (
   <div>
-    <p>Оплата...</p>
+    <Title text='Оплата...' />
   </div>
 );

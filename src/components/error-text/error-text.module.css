@@ -1,3 +1,10 @@
+.container {
+  position: relative;
+}
+
 .error {
-  color: red;
+  position: absolute;
+  color: #fd1f1f;
+  font-size: 14px;
+  top: 5px;
 }

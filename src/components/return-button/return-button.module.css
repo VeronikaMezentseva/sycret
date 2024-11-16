@@ -1,0 +1,14 @@
+.return-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: #e2e6e8;
+  color: #2c2c2f;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.return-button:hover {
+  box-shadow: 0px 4px 5px rgb(123, 126, 142);
+}

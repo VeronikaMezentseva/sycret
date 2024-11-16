@@ -21,7 +21,6 @@ export const Card: FC<{
     <label htmlFor={`${id}`} id={`${id}`} className={styles.label} />
     <div className={styles.wrapper}>
       <p>{name}</p>
-      <button>Выбрать</button>
     </div>
   </div>
 );

@@ -4,11 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.tsx'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js',
-    publicPath: '/'
-  },
   module: {
     rules: [
       {
@@ -75,11 +70,12 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, './build'),
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   devServer: {
-    static: path.join(__dirname, './dist'),
+    static: path.join(__dirname, './build'),
     compress: true,
     port: 4000,
     historyApiFallback: true

@@ -1,5 +1,6 @@
 {
   "name": "sycret",
+  "homepage": "https://VeronikaMezentseva.github.io/sycret",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,7 +10,9 @@
     "build:dev": "webpack --mode=development",
     "cypress": "./node_modules/.bin/cypress open",
     "lint": "eslint .",
-    "fix": "prettier ./src --write"
+    "fix": "prettier ./src --write",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
@@ -42,6 +45,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-webpack-plugin": "^4.0.1",
     "fetch-mock": "^9.11.0",
+    "gh-pages": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",
     "jest": "^29.7.0",
     "jest-css-modules-transform": "^4.4.2",

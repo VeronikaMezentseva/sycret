@@ -6,3 +6,10 @@
   letter-spacing: -1px;
   margin-bottom: 80px;
 }
+
+@media (width <= 560px) {
+  .text {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+}

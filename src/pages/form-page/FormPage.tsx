@@ -3,11 +3,7 @@ import styles from './form-page.module.css';
 import { InputPhoneNumber } from '../../components/input-phone-number/InputPhoneNumber';
 import { ErrorText } from '../../components/error-text/ErrorText';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import {
-  postOrder,
-  selectIsLoading,
-  selectIsSuccess
-} from '../../slices/order-slice';
+import { postOrder, selectIsLoading } from '../../slices/order-slice';
 import { ReturnButton } from '../../components/return-button/ReturnButton';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/loader/Loader';
@@ -15,7 +11,6 @@ import { Title } from '../../components/title/Title';
 import { Button } from '../../components/button/Button';
 
 export const FormPage: FC<{ id: string }> = ({ id }) => {
-  const isPaymentSuccess = useAppSelector(selectIsSuccess);
   const isLoading = useAppSelector(selectIsLoading);
 
   const [name, setName] = useState('');
@@ -117,6 +112,7 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
               className={styles.input}
               type='text'
               name='name'
+              value={name}
               onChange={(evt: React.FormEvent<HTMLInputElement>) =>
                 handleChange(evt)
               }
@@ -135,6 +131,7 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
             <p className={styles.paragraph}>Почта</p>
             <input
               className={styles.input}
+              value={email}
               type='email'
               name='email'
               onChange={(evt: React.FormEvent<HTMLInputElement>) =>

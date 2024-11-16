@@ -8,12 +8,10 @@ export const postOrder = createAsyncThunk(
 
 type TInitialState = {
   isLoading: boolean;
-  isSuccsess: boolean | null;
 };
 
 const initialState: TInitialState = {
-  isLoading: false,
-  isSuccsess: null
+  isLoading: false
 };
 
 export const orderSlice = createSlice({
@@ -21,7 +19,6 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    selectIsSuccess: (state) => state.isSuccsess,
     selectIsLoading: (state) => state.isLoading
   },
   extraReducers: (builder) => {
@@ -32,14 +29,12 @@ export const orderSlice = createSlice({
       .addCase(postOrder.rejected, (state) => {
         console.log('REJECT');
         state.isLoading = false;
-        state.isSuccsess = false;
       })
       .addCase(postOrder.fulfilled, (state) => {
         state.isLoading = false;
-        state.isSuccsess = true;
       });
   }
 });
 
 export const orderReducer = orderSlice.reducer;
-export const { selectIsSuccess, selectIsLoading } = orderSlice.selectors;
+export const { selectIsLoading } = orderSlice.selectors;

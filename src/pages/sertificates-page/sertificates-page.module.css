@@ -8,6 +8,9 @@
   display: flex;
   gap: 30px;
   margin-bottom: 35px;
+  flex-wrap: wrap;
+  max-width: 100%;
+  justify-content: center;
 }
 
 .button {

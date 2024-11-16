@@ -48,3 +48,10 @@
 .pay-button:hover {
   box-shadow: 0px 4px 5px rgb(123, 126, 142);
 }
+
+@media (width <= 560px) {
+  .form {
+    gap: 30px;
+    padding: 20px;
+  }
+}

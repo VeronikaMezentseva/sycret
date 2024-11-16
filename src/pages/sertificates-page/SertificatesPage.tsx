@@ -19,7 +19,6 @@ export const SertificatesPage: FC<{
   const isLoading = useAppSelector(selectIsLoading);
 
   const handleSubmit = () => {
-    console.log('navvv');
     navigate('/contacts');
   };
 
@@ -42,7 +41,11 @@ export const SertificatesPage: FC<{
               </li>
             ))}
           </ul>
-          <Button text={'Оформить'} isDisabled={false} onClick={handleSubmit} />
+          <Button
+            text={'Оформить'}
+            isDisabled={selectedCardId != '' ? false : true}
+            onClick={handleSubmit}
+          />
         </div>
       )}
     </>

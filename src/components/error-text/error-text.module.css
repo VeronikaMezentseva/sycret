@@ -4,7 +4,7 @@
 
 .error {
   position: absolute;
+  top: 5px;
   color: #fd1f1f;
   font-size: 14px;
-  top: 5px;
 }

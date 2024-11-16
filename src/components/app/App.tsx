@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
-import styles from './app.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from './services/store';
 import {
   getSertificates,
   selectSertificates
 } from '../../slices/sertificates-slice';
-import { TSertificate } from '../../utils/types';
-import { Card } from '../card/Card';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { Route, Routes } from 'react-router-dom';
 import { SertificatesPage } from '../../pages/sertificates-page/SertificatesPage';
@@ -19,6 +14,13 @@ function App() {
   const sertificates = useAppSelector(selectSertificates);
 
   const [selectedCardId, setSelectedCardId] = useState<string>(''); //здесь храним ID выбранной карты
+  const [selectedSertificateName, setSelectedSertificateName] =
+    useState<string>();
+
+  useEffect(() => {
+    const selectedCard = sertificates.find((item) => item.ID == selectedCardId);
+    setSelectedSertificateName(selectedCard?.NAME);
+  }, [selectedCardId]);
 
   useEffect(() => {
     dispatch(getSertificates());
@@ -26,7 +28,6 @@ function App() {
 
   const handleCardSelect = (id: string) => {
     setSelectedCardId(id);
-    console.log(selectedCardId);
     return selectedCardId;
   };
 
@@ -43,7 +44,17 @@ function App() {
             />
           }
         />
-        <Route path='/contacts' element={<FormPage id={selectedCardId} />} />
+        <Route
+          path='/contacts'
+          element={
+            <FormPage
+              id={selectedCardId}
+              selectedSertificateName={
+                selectedSertificateName ? selectedSertificateName : ''
+              }
+            />
+          }
+        />
         <Route path='/payment' element={<PaymentPage />} />
       </Routes>
     </>

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './form-page.module.css';
 import { InputPhoneNumber } from '../../components/input-phone-number/InputPhoneNumber';
 import { ErrorText } from '../../components/error-text/ErrorText';
@@ -10,7 +10,10 @@ import { Loader } from '../../components/loader/Loader';
 import { Title } from '../../components/title/Title';
 import { Button } from '../../components/button/Button';
 
-export const FormPage: FC<{ id: string }> = ({ id }) => {
+export const FormPage: FC<{ id: string; selectedSertificateName: string }> = ({
+  id,
+  selectedSertificateName
+}) => {
   const isLoading = useAppSelector(selectIsLoading);
 
   const [name, setName] = useState('');
@@ -105,53 +108,62 @@ export const FormPage: FC<{ id: string }> = ({ id }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <label className={styles.label}>
-            <p className={styles.paragraph}>Имя</p>
-            <input
-              className={styles.input}
-              type='text'
-              name='name'
-              value={name}
-              onChange={(evt: React.FormEvent<HTMLInputElement>) =>
-                handleChange(evt)
-              }
-              onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
-                handleChange(evt)
-              }
-            />
-            {isValidName === false && <ErrorText text='error name' />}
-          </label>
-          <label className={styles.label}>
-            <p className={styles.paragraph}>Номер телефона</p>
-            <InputPhoneNumber onChange={handleChange} />
-            {isValidPhomeNumber === false && <ErrorText text='error number' />}
-          </label>
-          <label className={styles.label}>
-            <p className={styles.paragraph}>Почта</p>
-            <input
-              className={styles.input}
-              value={email}
-              type='email'
-              name='email'
-              onChange={(evt: React.FormEvent<HTMLInputElement>) =>
-                handleChange(evt)
-              }
-              onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
-                handleChange(evt)
-              }
-            />
-            {isValidEmail === false && <ErrorText text='error email' />}
-          </label>
-          <div className={styles['buttons-container']}>
-            <ReturnButton />
-            <Button
-              type='submit'
-              text='Оплатить'
-              isDisabled={isValidForm === false}
-            />
-          </div>
-        </form>
+        <div>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <Title text={selectedSertificateName} />
+            <label className={styles.label}>
+              <p className={styles.paragraph}>Имя</p>
+              <input
+                className={styles.input}
+                type='text'
+                name='name'
+                value={name}
+                onChange={(evt: React.FormEvent<HTMLInputElement>) =>
+                  handleChange(evt)
+                }
+                onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
+                  handleChange(evt)
+                }
+              />
+              {isValidName === false && (
+                <ErrorText text='Это обязательное поле' />
+              )}
+            </label>
+            <label className={styles.label}>
+              <p className={styles.paragraph}>Номер телефона</p>
+              <InputPhoneNumber onChange={handleChange} />
+              {isValidPhomeNumber === false && (
+                <ErrorText text='Некорректный номер' />
+              )}
+            </label>
+            <label className={styles.label}>
+              <p className={styles.paragraph}>Почта</p>
+              <input
+                className={styles.input}
+                value={email}
+                type='email'
+                name='email'
+                onChange={(evt: React.FormEvent<HTMLInputElement>) =>
+                  handleChange(evt)
+                }
+                onBlur={(evt: React.FormEvent<HTMLInputElement>) =>
+                  handleChange(evt)
+                }
+              />
+              {isValidEmail === false && (
+                <ErrorText text='Некорректная почта' />
+              )}
+            </label>
+            <div className={styles['buttons-container']}>
+              <ReturnButton />
+              <Button
+                type='submit'
+                text='Оплатить'
+                isDisabled={isValidForm === false}
+              />
+            </div>
+          </form>
+        </div>
       )}
     </>
   );

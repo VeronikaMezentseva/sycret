@@ -30,7 +30,6 @@ h6 {
 html,
 body {
   height: 100vh;
-  /* width: 100vw; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,14 +39,3 @@ body {
   font-weight: 500;
   background-color: #e2e6e8;
 }
-
-/* убирает горизонтальный скролл по всей странице
-пишем это во внутренней оболочке, а не в body,
-тк иначе сайт не будет скролиться никак */
-/* .wrapper {
-  overflow: hidden;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0px 22px 0px 22px;
-} */

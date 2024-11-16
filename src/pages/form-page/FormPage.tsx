@@ -72,7 +72,7 @@ export const FormPage: FC<{ id: string; selectedSertificateName: string }> = ({
   };
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
     if (emailRegex.test(email)) {
       setIsValidEmail(true);
     } else {

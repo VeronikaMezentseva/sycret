@@ -11,7 +11,7 @@ const root = ReactDOMClient.createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='https://VeronikaMezentseva.github.io/sycret'>
       <Provider store={store}>
         <App />
       </Provider>

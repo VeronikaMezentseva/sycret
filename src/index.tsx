@@ -11,7 +11,9 @@ const root = ReactDOMClient.createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename='/sycret'>
+    <BrowserRouter
+      basename={process.env.NODE_ENV !== 'production' ? '' : '/sycret'}
+    >
       <Provider store={store}>
         <App />
       </Provider>
